@@ -10,6 +10,13 @@ function wordpressify_resources() {
 }
 add_action( 'wp_enqueue_scripts', 'wordpressify_resources' );
 
+// Customize excerpt word count length
+function custom_excerpt_length() {
+	return 22;
+}
+
+add_filter( 'excerpt_length', 'custom_excerpt_length' );
+
 // Theme setup
 function wordpressify_setup() {
 	// Handle Titles
@@ -31,7 +38,7 @@ function the_thumbnail($sizeof, $class = null, $postId = null)
         echo get_the_post_thumbnail($postId, $sizeof, array('class' => $class));
     } elseif ($sizeof == 'test') {
         echo '<img src="' . WP_THEME_DIR . 'img/no-thumb-test.jpg" title="' . get_the_title() . '"  alt="' . get_the_title() . '" width="150" height="150"/>';
-    } 
+    }
 }
 
 //show_admin_bar( false );
